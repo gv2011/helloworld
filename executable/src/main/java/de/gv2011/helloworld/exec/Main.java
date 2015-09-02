@@ -25,6 +25,7 @@ package de.gv2011.helloworld.exec;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;
@@ -35,33 +36,51 @@ import de.gv2011.helloworld.util.ServiceUtils;
 
 public class Main {
 
+	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+
 	public static void main(String[] args) throws Exception {
+		LOG.debug("Started to execute main method.");
 		final Thread mainThread = Thread.currentThread();
 		final AtomicBoolean shouldRun = new AtomicBoolean(true);
-		Runtime.getRuntime().addShutdownHook(new Thread(()->{shutdown(mainThread, shouldRun);}));
-		try (GreetingService service = ServiceUtils.loadService(GreetingService.class)) {
-			while(shouldRun.get()){
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			shutdown(mainThread, shouldRun);
+		},"shutdown-hook"));
+		try (GreetingService service = ServiceUtils
+				.loadService(GreetingService.class)) {
+			while (shouldRun.get()) {
+				LOG.debug("Obtaining hello greeting.");
 				Greeting greeting = service.getGreeting(GreetingType.HELLO);
 				System.out.println(greeting);
+				LOG.debug("Did hello greeting. Waiting some time now.");
 				try {
 					Thread.sleep(TimeUnit.SECONDS.toMillis(10));
-				} catch (InterruptedException e) {}
+					LOG.debug("Finished waiting.");
+				} catch (InterruptedException e) {
+					LOG.debug("Received interrupt while waiting.");
+				}
 			}
+			LOG.debug("Obtaining goodbye greeting.");
 			Greeting greeting = service.getGreeting(GreetingType.GOODBYE);
 			System.out.println(greeting);
+			LOG.debug("Did goodbye greeting.");
 		}
 	}
-	
+
 	private static void shutdown(Thread mainThread, AtomicBoolean shouldRun) {
+		LOG.info("Shutting down.");
+		shouldRun.set(false);
+		mainThread.interrupt();
+		LOG.debug("Waiting until main thread terminates.");
 		try {
-			shouldRun.set(false);
-			mainThread.interrupt();
 			mainThread.join(0);
-			LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-			loggerContext.stop();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			LOG.error("Interrupted while waiting for main thread to terminate.");
 		}
+		LOG.debug("Main thread terminated.");
+		LoggerContext loggerContext = (LoggerContext) LoggerFactory
+				.getILoggerFactory();
+		LOG.info("Shutting down logging now, goodbye.");
+		loggerContext.stop();
 	}
-	
+
 }

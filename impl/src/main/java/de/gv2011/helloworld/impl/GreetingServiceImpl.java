@@ -31,10 +31,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.gv2011.helloworld.Greeting;
 import de.gv2011.helloworld.GreetingService;
 
 public class GreetingServiceImpl implements GreetingService{
+	
+	private static final Logger LOG = LoggerFactory.getLogger(GreetingServiceImpl.class);
 	
 	private final ExecutorService executor = Executors.newCachedThreadPool();
 	
@@ -45,6 +50,7 @@ public class GreetingServiceImpl implements GreetingService{
 		greetingTexts.put(GreetingType.HELLO, "Hello world!");
 		greetingTexts.put(GreetingType.GOODBYE, "Goodbye, world!");
 		this.greetingTexts = Collections.unmodifiableMap(greetingTexts);
+		LOG.info("Created {}.", this);
 	}
 
 	@Override
@@ -59,7 +65,9 @@ public class GreetingServiceImpl implements GreetingService{
 	
 	private Greeting createGreeting(GreetingType greetingType) throws InterruptedException{
 		String text = getText(greetingType);
-		return new GreetingImpl(text);
+		GreetingImpl greeting = new GreetingImpl(text);
+		LOG.info("Created greeting of type {}.", greetingType);
+		return greeting;
 	}
 
 	private String getText(GreetingType greetingType) {
@@ -68,10 +76,14 @@ public class GreetingServiceImpl implements GreetingService{
 
 	@Override
 	public void close() throws Exception {
+		LOG.info("Closing {}.", this);
 		executor.shutdown();
-		while(!executor.awaitTermination(1, TimeUnit.SECONDS)){
+		final int timeout = 1;
+		while(!executor.awaitTermination(timeout, TimeUnit.SECONDS)){
+			LOG.warn("Executor of {} did not shutdown after {} second, forcing shutdown.", this, timeout);
 			executor.shutdownNow();
 		};
+		LOG.info("Closed {}.", this);
 	}
 
 }
