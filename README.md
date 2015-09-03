@@ -1,4 +1,25 @@
-# helloworld
+# Helloworld Example Project
+
+
+## Provides examples for various infrastructure topics:
+
+* Maven multimodule project
+* ServiceLoader
+* Logback configuration
+* Build executable jar
+* Clean shutdown (including log shutdown) with SIGINT.
+* Nullness annotations (but not satisfying)
+* license-maven-plugin
+
+
+## Todo:
+
+* JMX
+* REST
+* WAR
+
+
+## License
 
 The MIT License (MIT)
 

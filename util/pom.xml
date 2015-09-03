@@ -30,7 +30,7 @@
 	<artifactId>helloworld-util</artifactId>
 
 	<parent>
-		<groupId>de.gv2011</groupId>
+		<groupId>com.github.gv2011.helloworld</groupId>
 		<artifactId>helloworld-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -55,13 +55,6 @@
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		
-		<!-- API -->
-		<dependency>
-			<groupId>de.gv2011</groupId>
-			<artifactId>helloworld-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>	
-
 	</dependencies>
 
 </project>
