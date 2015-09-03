@@ -7,16 +7,22 @@
 * ServiceLoader
 * Logback configuration
 * Build executable jar
-* Clean shutdown (including log shutdown) with SIGINT.
+* Clean shutdown (including log shutdown) with SIGINT
 * Nullness annotations (but not satisfying)
-* license-maven-plugin
+* License maven plugin
+* Signing maven artifacts
 
 
-## Todo:
+## Todo / ideas:
 
+* Publish to Maven Central
 * JMX
 * REST
 * WAR
+* JAAS
+* Signing jars
+* Webstart
+* Swing
 
 
 ## License
