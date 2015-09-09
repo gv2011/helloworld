@@ -31,8 +31,10 @@
 	<artifactId>helloworld-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+	
+	<name>helloworld</name>
 	<description>See README.md</description>
+	<url>https://github.com/gv2011/helloworld</url>
 
 	<licenses>
 		<license>
