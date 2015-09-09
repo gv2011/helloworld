@@ -47,6 +47,7 @@
 		<url>https://github.com/gv2011/helloworld</url>
 		<connection>scm:git:git://github.com/gv2011/helloworld.git</connection>
 		<developerConnection>scm:git:git@gv2011.github.com:gv2011/helloworld.git</developerConnection>
+		<!-- gv2011.github.com is an alias for github.com -->
 	  <tag>HEAD</tag>
   </scm>
 
