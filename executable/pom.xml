@@ -31,7 +31,7 @@
 	<parent>
 		<groupId>com.github.gv2011.helloworld</groupId>
 		<artifactId>helloworld-parent</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.2</version>
 	</parent>
 
 	<dependencies>
@@ -62,21 +62,21 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>helloworld-api</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
 
 		<!-- util -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>helloworld-util</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
 
 		<!-- impl -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>helloworld-impl</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
