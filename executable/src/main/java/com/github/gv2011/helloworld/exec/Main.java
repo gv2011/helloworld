@@ -1,17 +1,22 @@
-/**
- * The MIT License
- * Copyright (c) 2014 Gustave Laville (laville@web.de)
- *
+
+package com.github.gv2011.helloworld.exec;
+
+/*-
+ * #%L
+ * helloworld-executable
+ * %%
+ * Copyright (C) 2014 - 2017 Vinz (https://github.com/gv2011)
+ * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,9 +24,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ * #L%
  */
-package com.github.gv2011.helloworld.exec;
-
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -39,7 +43,7 @@ public class Main {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		LOG.debug("Started to execute main method.");
 		final Thread mainThread = Thread.currentThread();
 		final AtomicBoolean shouldRun = new AtomicBoolean(true);
@@ -50,35 +54,35 @@ public class Main {
 				.loadService(GreetingService.class)) {
 			while (shouldRun.get()) {
 				LOG.debug("Obtaining hello greeting.");
-				Greeting greeting = service.getGreeting(GreetingType.HELLO);
+				final Greeting greeting = service.getGreeting(GreetingType.HELLO);
 				System.out.println(greeting);
 				LOG.debug("Did hello greeting. Waiting some time now.");
 				try {
 					Thread.sleep(TimeUnit.SECONDS.toMillis(10));
 					LOG.debug("Finished waiting.");
-				} catch (InterruptedException e) {
+				} catch (final InterruptedException e) {
 					LOG.debug("Received interrupt while waiting.");
 				}
 			}
 			LOG.debug("Obtaining goodbye greeting.");
-			Greeting greeting = service.getGreeting(GreetingType.GOODBYE);
+			final Greeting greeting = service.getGreeting(GreetingType.GOODBYE);
 			System.out.println(greeting);
 			LOG.debug("Did goodbye greeting.");
 		}
 	}
 
-	private static void shutdown(Thread mainThread, AtomicBoolean shouldRun) {
+	private static void shutdown(final Thread mainThread, final AtomicBoolean shouldRun) {
 		LOG.info("Shutting down.");
 		shouldRun.set(false);
 		mainThread.interrupt();
 		LOG.debug("Waiting until main thread terminates.");
 		try {
 			mainThread.join(0);
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			LOG.error("Interrupted while waiting for main thread to terminate.");
 		}
 		LOG.debug("Main thread terminated.");
-		LoggerContext loggerContext = (LoggerContext) LoggerFactory
+		final LoggerContext loggerContext = (LoggerContext) LoggerFactory
 				.getILoggerFactory();
 		LOG.info("Shutting down logging now, goodbye.");
 		loggerContext.stop();

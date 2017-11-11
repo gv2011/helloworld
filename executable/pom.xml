@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
     The MIT License
     Copyright (c) 2014 Gustave Laville (laville@web.de)
 
@@ -21,7 +20,6 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
-
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -49,10 +47,6 @@
 
 		<!-- Logging -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<scope>compile</scope>
@@ -60,21 +54,21 @@
 
 		<!-- api -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.github.gv2011.helloworld</groupId>
 			<artifactId>helloworld-api</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 
 		<!-- util -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.github.gv2011.helloworld</groupId>
 			<artifactId>helloworld-util</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 
 		<!-- impl -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.github.gv2011.helloworld</groupId>
 			<artifactId>helloworld-impl</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 			<scope>runtime</scope>
