@@ -1,162 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- The MIT License Copyright (c) 2014 Gustave Laville (laville@web.de) 
-	Permission is hereby granted, free of charge, to any person obtaining a copy 
-	of this software and associated documentation files (the "Software"), to 
-	deal in the Software without restriction, including without limitation the 
-	rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
-	sell copies of the Software, and to permit persons to whom the Software is 
-	furnished to do so, subject to the following conditions: The above copyright 
-	notice and this permission notice shall be included in all copies or substantial 
-	portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY 
-	OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
-	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
-	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
-	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
-	DEALINGS IN THE SOFTWARE. -->
+<!--
+  The MIT License (MIT)
+
+  Copyright (c) 2014 - 2017, Vinz (https://github.com/gv2011)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.github.gv2011</groupId>
-		<artifactId>parent</artifactId>
-		<version>0.0.3-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>com.github.gv2011</groupId>
+    <artifactId>parent-gv</artifactId>
+    <version>0.0.5-SNAPSHOT</version>
+  </parent>
 
-	<artifactId>helloworld-parent</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
-	<packaging>pom</packaging>
+  <artifactId>helloworld-parent</artifactId>
+  <version>0.0.3-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-	<name>helloworld</name>
-	<description>See README.md</description>
-	<url>https://github.com/gv2011/helloworld</url>
+  <name>helloworld</name>
+  <description>See README.md</description>
+  <url>https://github.com/gv2011/helloworld</url>
 
-	<licenses>
-		<license>
-			<name>The MIT License (MIT)</name>
-			<url>http://opensource.org/licenses/MIT</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+  <scm>
+    <connection>scm:git:git@github.com:gv2011/helloworld.git</connection>
+    <developerConnection>scm:git:git@github.com:gv2011/helloworld.git</developerConnection>
+    <url>https://github.com/gv2011/helloworld</url>
+    <tag>HEAD</tag>
+  </scm>
 
-	<scm>
-		<url>https://github.com/gv2011/helloworld</url>
-		<connection>scm:git:git://github.com/gv2011/helloworld.git</connection>
-		<developerConnection>scm:git:git@gv2011.github.com:gv2011/helloworld.git</developerConnection>
-		<!-- gv2011.github.com is an alias for github.com -->
-		<tag>HEAD</tag>
-	</scm>
+  <modules>
+    <module>api</module>
+    <module>util</module>
+    <module>impl</module>
+    <module>test</module>
+    <module>executable</module>
+  </modules>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-
-	<developers>
-		<developer>
-			<name>Gustave Laville</name>
-			<email>laville@web.de</email>
-			<url>https://github.com/gv2011</url>
-			<id>gv2011</id>
-		</developer>
-	</developers>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<modules>
-		<module>api</module>
-		<module>util</module>
-		<module>impl</module>
-		<module>test</module>
-		<module>executable</module>
-	</modules>
-
-	<dependencyManagement>
-		<dependencies>
-
-			<!-- Utilities -->
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<!-- <version>18.0</version> -->
-			</dependency>
-
-			<!-- Nullness annotations -->
-			<dependency>
-				<groupId>com.google.code.findbugs</groupId>
-				<artifactId>jsr305</artifactId>
-				<!-- <version>3.0.0</version> -->
-			</dependency>
-
-			<!-- Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<!-- <version>1.7.12</version> -->
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<!-- <version>1.1.3</version> -->
-				<scope>runtime</scope>
-			</dependency>
-
-			<!-- Test -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<!-- <version>4.12</version> -->
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-library</artifactId>
-				<!-- <version>1.3</version> -->
-				<scope>test</scope>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>com.mycila</groupId>
-					<artifactId>license-maven-plugin</artifactId>
-					<version>2.11</version>
-					<configuration>
-						<header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
-						<properties>
-							<owner>Gustave Laville (laville@web.de)</owner>
-							<email>laville@web.de</email>
-							<project.inceptionYear>2014</project.inceptionYear>
-						</properties>
-						<excludes>
-							<exclude>LICENSE</exclude>
-							<exclude>README.md</exclude>
-							<exclude>**/logs/**</exclude>
-						</excludes>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.github.gv2011</groupId>
+        <artifactId>util</artifactId>
+        <version>0.0.5-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.gv2011</groupId>
+        <artifactId>gcol</artifactId>
+        <version>0.0.5-SNAPSHOT</version>
+        <optional>true</optional>
+        <scope>runtime</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 </project>
